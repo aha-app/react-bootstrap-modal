@@ -70,7 +70,7 @@
     "release-script": "^1.0.2",
     "rimraf": "^2.4.3",
     "simulant": "^0.2.0",
-    "sinon": "^1.17.3",
+    "sinon": "^2.1.0",
     "sinon-chai": "^2.6.0",
     "style-loader": "^0.13.1",
     "teaspoon": "^6.3.0",
@@ -81,7 +81,7 @@
     "classnames": "^2.2.3",
     "dom-helpers": "^2.2.4",
     "prop-types": "^15.5.8",
-    "react-overlays": "^0.6.10",
+    "react-overlays": "^0.7.0",
     "react-prop-types": "^0.4.0"
   }
 }
