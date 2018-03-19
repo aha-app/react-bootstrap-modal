@@ -1,13 +1,16 @@
 {
-  "name": "react-bootstrap-modal",
-  "version": "3.0.1",
+  "name": "@aha-app/react-bootstrap-modal",
+  "version": "3.0.2",
   "description": "",
   "author": {
     "name": "Jason Quense",
     "email": "monastic.panic@gmail.com"
   },
   "main": "lib/Modal.js",
-  "repository": "jquense/react-bootstrap-modal",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aha-app/react-bootstrap-modal.git"
+  },
   "license": "MIT",
   "keywords": [
     "react-boostrap-modal",
@@ -17,16 +20,20 @@
     "dialog",
     "bootstrap"
   ],
+  "files": [
+    "lib/*"
+  ],
   "scripts": {
     "test": "karma start --single-run",
     "tdd": "karma start",
     "clean": "rimraf lib/*",
     "less": "lessc -x src/less/rbm-complete.less lib/styles/rbm-complete.css & lessc -x src/less/rbm-patch.less lib/styles/rbm-patch.css",
     "copy": "cpy src/less/* lib/styles",
-    "build": "npm run clean && babel src --out-dir lib && npm run less & npm run copy",
+    "build": "npm run clean && babel src --out-dir lib && npm run less && npm run copy",
     "build:docs": "webpack --config ./webpack/doc-config.es6.js",
     "docs": "webpack-dev-server --config ./webpack/doc-config.es6.js",
-    "release": "release"
+    "release": "release",
+    "prepare": "npm run build"
   },
   "release-script": {
     "defaultDryRun": "false"
