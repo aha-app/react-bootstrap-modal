@@ -207,6 +207,7 @@ class Modal extends React.Component {
         transition={transition}
         dialogTransitionTimeout={Modal.TRANSITION_DURATION}
         backdropTransitionTimeout={Modal.BACKDROP_TRANSITION_DURATION}
+        enforceFocus={false}
       >
         {modal}
       </BaseModal>
