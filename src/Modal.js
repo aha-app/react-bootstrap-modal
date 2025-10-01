@@ -123,6 +123,21 @@ class Modal extends React.Component {
   handleEntering(...args) {
     this._show(...args);
 
+    // Call showPopover on the dialog element's parent `[role="dialog"]` element (the container element).
+    // Because the container is actually handled by react-overlays's Modal, we just walk up the DOM tree to get it,
+    // otherwise we would have to fork the whole Modal component from react-overlays to get a ref to it.
+    if (this.dialog) {
+      const container = this.dialog.closest('[role="dialog"]');
+      if (container) {
+        const backdrop = container.querySelector('.modal-backdrop');
+        if (backdrop) {
+          backdrop.setAttribute('popover', 'manual');
+          backdrop.showPopover();
+        }
+      }
+      this.dialog.showPopover();
+    }
+
     if (this.props.onEntering) {
       this.props.onEntering()
     }
@@ -132,6 +147,18 @@ class Modal extends React.Component {
     this._removeAttentionClasses()
     if (this.props.onExiting) {
       this.props.onExiting();
+    }
+
+    // Call showPopover on the dialog element's parent `[role="dialog"]` element (the container element).
+    // Because the container is actually handled by react-overlays's Modal, we just walk up the DOM tree to get it,
+    // otherwise we would have to fork the whole Modal component from react-overlays to get a ref to it.
+    if (this.dialog) {
+      const container = this.dialog.closest('[role="dialog"]');
+      if (container) {
+        const backdrop = container.querySelector('.modal-backdrop');
+        if (backdrop && backdrop.hidePopover) backdrop.hidePopover();
+      }
+      this.dialog.hidePopover();
     }
   }
 
@@ -165,6 +192,7 @@ class Modal extends React.Component {
         style={dialog}
         className={cn(className, prefix, { in: props.show && !transition })}
         onClick={this.props.backdrop ? e => this.handleBackdropClick(e) : null}
+        popover={props.backdrop === 'static' ? 'manual' : 'auto'}
       >
         <div
           key='modal'
